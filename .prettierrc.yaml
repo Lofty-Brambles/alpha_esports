@@ -1,0 +1,10 @@
+trailingComma: "all"
+quoteProps: "consistent"
+endOfLine: "lf"
+
+plugins: ["./node_modules/prettier-plugin-astro"]
+overrides:
+  - files: "*.astro"
+    options: { parser: "astro" }
+  - files: "*.svelte"
+    options: { parser: "svelte" }
