@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write src --plugin-search-dir=."
   },
   "dependencies": {
     "@astrojs/prefetch": "^0.2.1",
@@ -18,6 +19,8 @@
     "astro-purgecss": "^2.0.1",
     "astro-robots-txt": "^0.4.1",
     "svelte": "^3.54.0",
+    "svelte-particles": "^2.9.3",
+    "tsparticles": "^2.9.3",
     "vite": "^4.2.1"
   },
   "devDependencies": {

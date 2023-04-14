@@ -1,5 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
+import Particles from "@/components/svelte/Particles.svelte";
 const image = {
   url: "/favicon.ico",
   alt: "The official logo of Alpha Esports",
@@ -9,9 +10,10 @@ const title = "Alpha Esports";
 const description = `Alpha eSports is a clan alliance based on the game Clash Of Clans. Founded in 2018 by Junayd, we are a friendly community who work together and help each other out! We have a clan for everyone. From chilled and laid back to competetitive clans, we have a clan that is suited for you.`;
 const tags = ["Clash of clans", "Esports"];
 
-const layoutProps = { title, description, tags, image }
+const layoutProps = { title, description, tags, image };
 ---
 
 <Base {...layoutProps}>
+  <Particles client:load />
   <main>pp</main>
 </Base>

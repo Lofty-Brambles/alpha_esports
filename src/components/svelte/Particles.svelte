@@ -1,13 +1,30 @@
 <script lang="ts">
-  import { onMount } from "svelte"
+  import Particles from "svelte-particles";
+  import { loadFull } from "tsparticles";
 
-  let canvas, mouse
+  let particlesConfig = {
+    particles: {
+      color: {
+        value: "#000",
+      },
+      links: {
+        enable: true,
+        color: "#000",
+      },
+      move: {
+        enable: true,
+      },
+    },
+  };
 
-  onMount(() => {
-    const ctx = canvas.getContext("2d");
-  })
+  let particlesInit = async (engine: Parameters<typeof loadFull>[0]) => {
+    await loadFull(engine);
+  };
 </script>
 
-<div class="backdrop" data-animation="fade 700 100">
-  <canvas bind:this={canvas} bind:width bind:height ></canvas>
-</div>
+<Particles
+  id="tsparticles"
+  options={particlesConfig}
+  on:particlesLoaded={(e) => e.detail.particles?.play()}
+  {particlesInit}
+/>

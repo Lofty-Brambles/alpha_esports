@@ -1,12 +1,12 @@
 ---
 export interface Props {
-	title: string;
-	description: string;
-	tags: string[];
-	image: {
-		url: string;
-		alt: string;
-	};
+  title: string;
+  description: string;
+  tags: string[];
+  image: {
+    url: string;
+    alt: string;
+  };
 }
 const { title, description, tags, image } = Astro.props;
 const canonicalURL = new URL(Astro.request.url).href;
@@ -46,4 +46,7 @@ const canonicalURL = new URL(Astro.request.url).href;
 <meta property="og:image:alt" content={image.alt} />
 <meta property="og:image:type" content="image/svg" />
 
-{tags.length !== 0 && tags.map((tag) => <meta property="og:article:tag" content={tag} />)}
+{
+  tags.length !== 0 &&
+    tags.map((tag) => <meta property="og:article:tag" content={tag} />)
+}
