@@ -27,49 +27,74 @@ const { title } = Astro.props;
   </body>
 </html>
 
-<style>
+<style is:global>
   :root {
-    --c-acc-base: hsl(223.81, 0%, 100%);
-    --c-acc-app-bg: hsl(357.73, 99.37%, 98.08%);
-    --c-acc-surface-normal: hsl(357.45, 99.23%, 96.92%);
-    --c-acc-surface-hover: hsl(356.66, 99.98%, 93.8%);
-    --c-acc-surface-active: hsl(355.77, 99.83%, 90.59%);
-    --c-acc-divider: hsl(356.66, 99.98%, 93.8%);
-    --c-acc-text-secondary: hsl(334.43, 99.9%, 36.85%);
-    --c-acc-text-primary: hsl(0, 0%, 0%);
-    --c-acc-btn-normal: hsl(334.31, 99.85%, 34.28%);
-    --c-acc-btn-hover: hsl(334.16, 99.98%, 30.89%);
-    --c-acc-btn-active: hsl(334.08, 99.9%, 27.57%);
-    --c-acc-btn-text: hsl(357, 99.51%, 95.11%);
-    --c-acc-shadow: hsl(337, 99.9%, 9.54%);
-    --c-main-base: hsl(223.81, 0%, 100%);
-    --c-main-app-bg: hsl(357.73, 99.37%, 98.08%);
-    --c-main-surface-normal: hsl(357.45, 99.23%, 96.92%);
-    --c-main-surface-hover: hsl(356.94, 48.79%, 92.67%);
-    --c-main-surface-active: hsl(356.48, 30.02%, 88.22%);
-    --c-main-divider: hsl(356.94, 48.79%, 92.67%);
-    --c-main-text-secondary: hsl(351.66, 6.72%, 45.79%);
-    --c-main-text-primary: hsl(346.06, 19.9%, 11.92%);
-    --c-main-btn-normal: hsl(350.38, 8.08%, 36.26%);
-    --c-main-btn-hover: hsl(349.83, 8.83%, 32.4%);
-    --c-main-btn-active: hsl(349.25, 9.76%, 28.6%);
-    --c-main-btn-text: hsl(357.01, 53.51%, 93.31%);
-    --c-main-shadow: hsl(345.42, 24%, 9.54%);
-    --shadow-color: 343.235deg 47.443% 79.558%;
-    --shadow-elevation1: 0px 0.4px 0.6px hsl(var(--shadow-color) / 0.07),
-      0px 0.8px 1.1px -0.4px hsl(var(--shadow-color) / 0.2),
-      0px 1.6px 2.2px -0.7px hsl(var(--shadow-color) / 0.33);
-    --shadow-elevation2: 0px 0.4px 0.6px hsl(var(--shadow-color) / 0.08),
-      0px 1.8px 2.5px -0.2px hsl(var(--shadow-color) / 0.18),
-      0px 3.8px 5.3px -0.5px hsl(var(--shadow-color) / 0.28),
-      0px 8px 11.2px -0.7px hsl(var(--shadow-color) / 0.37);
-    --shadow-elevation3: 0px 0.4px 0.6px hsl(var(--shadow-color) / 0.08),
-      0px 3.7px 5.2px -0.1px hsl(var(--shadow-color) / 0.14),
-      0px 6.6px 9.2px -0.2px hsl(var(--shadow-color) / 0.2),
-      0px 10.2px 14.2px -0.4px hsl(var(--shadow-color) / 0.26),
-      0px 15.5px 21.6px -0.5px hsl(var(--shadow-color) / 0.32),
-      0px 23.3px 32.5px -0.6px hsl(var(--shadow-color) / 0.38),
-      0px 34.6px 48.3px -0.7px hsl(var(--shadow-color) / 0.44);
-    color: rgb(36, 24, 27);
+    --base: rgb(29, 10, 50);
+    --app-bg: rgb(15, 0, 31);
+    --surface-normal: rgb(39, 21, 61);
+    --surface-hover: rgb(47, 31, 73);
+    --surface-active: rgb(56, 41, 83);
+    --divider: rgb(47, 31, 73);
+    --text-primary: rgb(229, 232, 255);
+    --btn-normal: rgba(145, 157, 170, 0.12);
+    --btn-hover: rgba(255, 255, 255, 0.2);
+    --btn-text: rgb(255, 255, 255);
+    --shadow: rgb(29, 10, 50);
+  }
+
+  @font-face {
+    font-family: 'primary';
+    src: url('brailleFd.woff2') format('woff2');
+  }
+
+  html {
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    background: linear-gradient(to top, var(--app-bg), var(--base));
+    color: var(--text-primary);
+    font-family: 'primary', Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center, dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed, 
+  figure, figcaption, footer, header, hgroup, 
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    text-rendering: optimizeSpeed;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure, 
+  footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+  body {
+    line-height: 1;
+  }
+  ol, ul {
+    list-style: none;
+  }
+  blockquote, q {
+    quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+    content: '';
+    content: none;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
   }
 </style>

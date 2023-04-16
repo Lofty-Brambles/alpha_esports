@@ -1,6 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
-import Particles from "@/components/svelte/Particles.svelte";
+import Particles from "@/components/astro/Particles.astro";
+import Navbar from "@/components/astro/Navbar.astro";
+import Name from "@/components/astro/Name.astro";
+
 const image = {
   url: "/favicon.ico",
   alt: "The official logo of Alpha Esports",
@@ -14,6 +17,54 @@ const layoutProps = { title, description, tags, image };
 ---
 
 <Base {...layoutProps}>
-  <Particles client:load />
-  <main>pp</main>
+  <Particles />
+  <Navbar />
+  <div>
+    <main>
+      <Name />
+    </main>
+  </div>
 </Base>
+
+<script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+  AOS.init();
+</script>
+
+<style>
+  div {
+    padding: 0 1.25rem;
+    display: grid;
+    gap: 0 1.25rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  main {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 768px) {
+    div {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    main {
+      grid-column: 2 / span 6;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    div {
+      display: grid;
+      padding: 0;
+      gap: 0 1.5rem;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    main {
+      grid-column: 3 / span 7;
+    }
+  }
+</style>

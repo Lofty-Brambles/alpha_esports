@@ -14,6 +14,7 @@
     "@astrojs/prefetch": "^0.2.1",
     "@astrojs/sitemap": "^1.2.2",
     "@astrojs/svelte": "^2.1.0",
+    "aos": "3.0.0-beta.6",
     "astro": "^2.2.3",
     "astro-compress": "^1.1.35",
     "astro-purgecss": "^2.0.1",
@@ -24,6 +25,7 @@
     "vite": "^4.2.1"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "eslint": "^8.38.0",
