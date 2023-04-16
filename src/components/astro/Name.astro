@@ -1,24 +1,68 @@
-<h1 data-value="ALPHA E-SPORTS">ALPHA E-SPORTS</h1>
+<div data-aos="zoom-in-up">
+  <h1 data-value="ALPHA E-SPORTS">ALPHA E-SPORTS</h1>
+</div>
 
 <style>
-  h1 {
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.875rem;
-    line-height: 46px;
+  div {
+    padding: 8rem 0;
+    width: 100%;
+    background-image: url(/android-chrome-144x144.png);
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
-  @media(min-width: 768px) {
+  h1 {
+    text-align: center;
+    font-size: 1.65rem;
+    line-height: 40px;
+    font-family: monospace;
+  }
+
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 1.875rem;
+      line-height: 46px;
+    }
+  }
+
+  @media (min-width: 768px) {
     h1 {
       font-size: 3rem;
       line-height: 60px;
     }
   }
 
-  @media(min-width: 1024px) {
+  @media (min-width: 1024px) {
     h1 {
       font-size: 3.75rem;
       line-height: 82px;
     }
   }
 </style>
+
+<script>
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  let interval: NodeJS.Timer | undefined = undefined;
+
+  const scrollLetters = (event: Event) => {
+    let iteration = 0;
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+      (event.target as HTMLHeadingElement).innerText = (event.target as HTMLHeadingElement)
+        .innerText!.split("")
+        .map((_, index) => {
+          if (index < iteration) return (event.target as HTMLHeadingElement).dataset.value![index];
+          return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+      if (iteration >= (event.target as HTMLHeadingElement).dataset.value!.length) clearInterval(interval);
+      iteration += 1 / 2;
+    }, 30);
+  };
+
+  const header = document.querySelector('[data-value="ALPHA E-SPORTS"]')!;
+  header.addEventListener("mouseover", scrollLetters);
+</script>
