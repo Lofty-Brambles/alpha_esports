@@ -1,82 +1,111 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Base from "@/layouts/Base.astro";
+import Particles from "@/components/Particles.astro";
+import Navbar from "@/components/Navbar.astro";
+import Name from "@/components/Name.astro";
+import Headings from "@/components/Headings.astro";
+import CardMaker from "@/components/CardMaker.astro";
+
+const image = {
+  url: "/favicon.ico",
+  alt: "The official logo of Alpha Esports",
+};
+
+const title = "Alpha Esports";
+const description = `Alpha eSports is a clan alliance based on the game Clash Of Clans. Founded in 2018 by Junayd, we are a friendly community who work together and help each other out! We have a clan for everyone. From chilled and laid back to competetitive clans, we have a clan that is suited for you.`;
+const tags = ["Clash of clans", "Esports"];
+
+const layoutProps = { title, description, tags, image };
 ---
 
-<Layout title="Welcome to Astro.">
-  <main>
-    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
-    <p class="instructions">
-      To get started, open the directory <code>src/pages</code> in your project.<br
-      />
-      <strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-    </p>
-    <ul role="list" class="link-card-grid">
-      <Card
-        href="https://docs.astro.build/"
-        title="Documentation"
-        body="Learn how Astro works and explore the official API docs."
-      />
-      <Card
-        href="https://astro.build/integrations/"
-        title="Integrations"
-        body="Supercharge your project with new frameworks and libraries."
-      />
-      <Card
-        href="https://astro.build/themes/"
-        title="Themes"
-        body="Explore a galaxy of community-built starter themes."
-      />
-      <Card
-        href="https://astro.build/chat/"
-        title="Community"
-        body="Come say hi to our amazing Discord community. ❤️"
-      />
-    </ul>
-  </main>
-</Layout>
+<Base {...layoutProps}>
+  <Particles />
+  <Navbar />
+  <div data-role="main-cover">
+    <main>
+      <Name />
+      <Headings>
+        <img
+          src="/confused-barb.png"
+          alt="an image of a confused barbarian troop"
+          height="64px"
+          class="inline-block"
+        /><div> | Who are we?</div>
+      </Headings>
+      <p data-role="description-paragraph" data-aos="zoom-in">
+        Founded in 2018 by Junayd, we are a clan alliance-based community, open,
+        friendly and always helping each other out! From chilled and laid-back
+        to competitive clans, we always have one for you! Our discord
+        server open to all, with tons of events, prizes, giveaways and more! We
+        are always looking forward to meet new players with a warm welcome!
+      </p>
+      <Headings>
+        <img
+          src="/another-loon.png"
+          alt="an image of a baloon troop"
+          height="64px"
+          class="inline-block"
+        /><div> | Which clans form us?</div>
+      </Headings>
+      <CardMaker />
+    </main>
+  </div>
+</Base>
 
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-  .text-gradient {
-    background-image: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-  }
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
+<script>
+  import AOS from "aos";
+  import "aos/dist/aos.css";
+  AOS.init();
+</script>
+
+<style is:global>
+  div[data-role="main-cover"] {
+    padding: 0 1.25rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
+    gap: 0 1.25rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  main {
+    grid-column: 1 / -1;
+  }
+
+  [data-role="description-paragraph"] {
+    text-align: center;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .inline-block {
+    display: inline-block;
+  }
+
+  .container-cards {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fill,minmax(17.875rem,1fr));
+  }
+
+  @media (min-width: 768px) {
+    div[data-role="main-cover"] {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    main {
+      grid-column: 2 / span 6;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    div[data-role="main-cover"] {
+      display: grid;
+      padding: 0;
+      gap: 0 1.5rem;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    main {
+      grid-column: 3 / span 8;
+    }
   }
 </style>

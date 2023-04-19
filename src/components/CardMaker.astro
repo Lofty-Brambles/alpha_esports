@@ -1,0 +1,50 @@
+---
+import Card from "@/components/Card.astro";
+import tags from "@/data/clans.json";
+let result: Array<any> = [];
+
+const baseAPIUrl = "https://api.clashofclans.com/v1";
+const config = {
+  headers: {
+    "Authorization": `Bearer ${import.meta.env.COC_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+};
+
+await Promise.all(
+  Object.keys(tags.clans).map(async (tag) => {
+    const response = await fetch(`${baseAPIUrl}/clans/%23${tag}`, config);
+    const rawData = await response.json();
+    if (Object.hasOwn(rawData, "message")) return;
+
+    const data = {
+      name: rawData?.name,
+      image: rawData?.badgeUrls?.medium,
+      leader: (tags.clans as Record<string, string>)[tag],
+      league: rawData?.warLeague?.name,
+      requirement: `Town Hall ${rawData.requiredTownhallLevel}+`,
+      capital: rawData?.capitalLeague?.name,
+      language: rawData?.chatLanguage?.name,
+      location: rawData?.location?.name,
+    };
+
+    result.push([tag, data]);
+  }),
+);
+---
+
+{
+  Object.entries(result).length === 0 ? (
+    <p data-role="description-paragraph">🔁 | Loading...</p>
+  ) : (
+    <div class="container-cards" data-role="description-paragraph">
+      {result.map((data: [string, any]) => (
+        <Card
+          tag={data[0]}
+          data={data[1]}
+          aos={`fade-up`}
+        />
+      ))}
+    </div>
+  )
+}

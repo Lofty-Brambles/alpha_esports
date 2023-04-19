@@ -4,10 +4,7 @@ endOfLine: "lf"
 
 plugins:
   - "./node_modules/prettier-plugin-astro"
-  - "./node_modules/prettier-plugin-svelte"
 
 overrides:
   - files: "**/*.astro"
     options: { parser: "astro" }
-  - files: "**/*.svelte"
-    options: { parser: "svelte" }
